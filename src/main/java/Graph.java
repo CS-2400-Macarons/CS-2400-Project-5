@@ -1,3 +1,6 @@
+import ADTPackage.QueuePackage.QueueInterface;
+import ADTPackage.StackPackage.StackInterface;
+
 public class Graph<T> implements GraphInterface<T>
 {
     private boolean[][] edges;
@@ -44,26 +47,16 @@ public class Graph<T> implements GraphInterface<T>
 
     @Override
     public QueueInterface<T> getBreadthFirstTraversal(T origin) {
+        // Use Queue
         return null;
     }
 
     @Override
     public QueueInterface<T> getDepthFirstTraversal(T origin) {
+        // Use Stack
+        QueueInterface<String> traversalOrder;
         return null;
+
     }
 
-    @Override
-    public StackInterface<T> getTopologicalOrder() {
-        return null;
-    }
-
-    @Override
-    public int getShortestPath(T begin, T end, StackInterface<T> path) {
-        return 0;
-    }
-
-    @Override
-    public double getCheapestPath(T begin, T end, StackInterface<T> path) {
-        return 0;
-    }
 }
