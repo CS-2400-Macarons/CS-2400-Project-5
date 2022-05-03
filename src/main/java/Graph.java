@@ -1,9 +1,62 @@
-import ADTPackage.QueuePackage.QueueInterface;
-import ADTPackage.StackPackage.StackInterface;
+import ADTPackage.QueuePackage.*;
+import ADTPackage.StackPackage.*;
 
 public class Graph<T> implements GraphInterface<T>
 {
     private boolean[][] edges;
+    private T[] labels;
+
+    public Graph(int n)
+    {
+        edges = new boolean[n][n];
+        labels = (T[]) new Object[n];
+    }
+
+    public int[] neighbors(int vertex)
+    {
+        int i;
+        int count = 0;
+        int[] answer;
+
+        for(i = 0; i < labels.length; i++)
+        {
+            if(edges[vertex][i])
+            {
+                count++;
+            }
+        }
+
+        if(count == 0)
+        {
+            return null;
+        }
+
+        answer = new int[count];
+        count = 0;
+        for (i = 0; i < labels.length; i++)
+        {
+            if(edges[vertex][i])
+            {
+                answer[count++] = i;
+            }
+        }
+        return answer;
+    }
+
+    public T getLabel(int vertex)
+    {
+        return labels[vertex];
+    }
+
+    public void setLabel(int vertex, T newLabel)
+    {
+        labels[vertex] = newLabel;
+    }
+
+    public int size()
+    {
+        return labels.length;
+    }
 
     @Override
     public boolean addVertex(T vertexLabel) {
@@ -45,18 +98,41 @@ public class Graph<T> implements GraphInterface<T>
 
     }
 
-    @Override
-    public QueueInterface<T> getBreadthFirstTraversal(T origin) {
-        // Use Queue
+    public QueueInterface<T> getBreadthFirstTraversal(int origin) {
         return null;
     }
 
-    @Override
-    public QueueInterface<T> getDepthFirstTraversal(T origin) {
-        // Use Stack
-        QueueInterface<String> traversalOrder;
-        return null;
+    public QueueInterface<T> getDepthFirstTraversal(int origin) {
+        QueueInterface<T> traversalOrder = new LinkedQueue<>();
+        StackInterface<Integer> vertexStack = new LinkedStack<>();
+        int visitVertex = origin;
 
+        // Mark originVertex as visited
+        if(!edges[origin][origin])
+        {
+            return null;
+        }
+        traversalOrder.enqueue(labels[origin]);
+
+        vertexStack.push(origin);
+
+        while(!vertexStack.isEmpty())
+        {
+            int topVertex = vertexStack.peek();
+            int[] vertexNeighbors = neighbors(topVertex);
+            if(vertexNeighbors != null)
+            {
+                visitVertex = vertexNeighbors[0]; // visit first neighbor
+                traversalOrder.enqueue(getLabel(visitVertex));
+                vertexStack.push(visitVertex);
+            }
+            else
+            {
+                vertexStack.pop();
+            }
+        }
+
+        return traversalOrder;
     }
 
 }

@@ -1,5 +1,4 @@
 package ADTPackage.QueuePackage;
-stackCalculator
 /**
    An interface for the ADT queue.   
    @author Frank M. Carrano
