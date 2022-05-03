@@ -5,11 +5,18 @@ public class Graph<T> implements GraphInterface<T>
 {
     private boolean[][] edges;
     private T[] labels;
+    private boolean adjMatrix[][];
+    private int numVertices;
+    private ArrayList<ArrayList<Integer>> adjList; 
+    
 
     public Graph(int n)
     {
         edges = new boolean[n][n];
-        labels = (T[]) new Object[n];
+        labels = (T[]) new Object[n];        
+        this.numVertices = n;
+        adjMatrix = new boolean[n][n];
+        adjList = new ArrayList<ArrayList<Integer>>(n);
     }
 
     public int[] neighbors(int vertex)
@@ -69,8 +76,11 @@ public class Graph<T> implements GraphInterface<T>
     }
 
     @Override
-    public boolean addEdge(T begin, T end) {
-        return false;
+   public void addEdge(int source, int target)
+    {
+        adjMatrix[source][target] = true;
+        adjList.get(source).add(target);
+       
     }
 
     @Override
@@ -96,6 +106,45 @@ public class Graph<T> implements GraphInterface<T>
     @Override
     public void clear() {
 
+    }
+    
+    //print the adjacency Matrix
+    public String printAdjMatrix() {
+        
+       System.out.print("Adjacency Matrix: ");
+        for (int i = 0; i < numVertices; i++) 
+        {
+            System.out.print("\n");
+          for (int j = 0; j < numVertices; j++) 
+          {
+              if(adjMatrix[i][j] == true)
+              {
+                  System.out.print("T ");
+              }
+
+              else
+               System.out.print("F ");
+            
+            }      
+
+        }
+       return "\n";
+        
+      }
+      
+      //Print the adjacency list
+    public String printAdjList(char[] labelVertex)
+    {
+        for(int i = 0; i < adjList.size(); i++)
+        {
+            System.out.print("\nVertex: " + labelVertex[i] + ":");
+
+            for(int j = 0; j < adjList.get(i).size(); j++)
+            {
+                System.out.print(" -> " + labelVertex[adjList.get(i).get(j)]);
+            }
+        }
+        return "\n";
     }
 
     public QueueInterface<T> getBreadthFirstTraversal(int origin) {
