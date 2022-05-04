@@ -8,12 +8,15 @@ public class Graph<T> implements GraphInterface<T>
     private ArrayList<ArrayList<Integer>> adjList;
     private T[] labels;
     private int numVertices;
+    private int index = 0;
     
 
     public Graph(int n)
     {
         adjMatrix = new boolean[n][n];
         adjList = new ArrayList<ArrayList<Integer>>(n);
+            for(int i = 0; i < num; i++)
+                adjList.add(new ArrayList<Integer>());
         labels = (T[]) new Object[n];        
         this.numVertices = n;
     }
@@ -70,6 +73,12 @@ public class Graph<T> implements GraphInterface<T>
     public boolean addVertex(T vertexLabel) {
         return false;
     }
+    
+    public void addVertex(T vertex)
+    {
+        labels[index] = vertex;
+        index++;
+    }
 
     @Override
     public boolean addEdge(T begin, T end, double edgeWeight) {
@@ -119,10 +128,18 @@ public class Graph<T> implements GraphInterface<T>
     //print the adjacency Matrix
     public String printAdjMatrix() {
         
-       System.out.print("Adjacency Matrix: ");
+       System.out.println("Adjacency Matrix: ");
+       System.out.print("  ");
+       for(int i = 0; i < numVertices; i++)
+       {
+           System.out.print(labels[i] + " ");
+       }
+       
         for (int i = 0; i < numVertices; i++) 
         {
             System.out.print("\n");
+            System.out.print(labels[i] + " ");
+            
           for (int j = 0; j < numVertices; j++) 
           {
               if(adjMatrix[i][j] == true)
@@ -141,15 +158,17 @@ public class Graph<T> implements GraphInterface<T>
       }
 
     //Print the adjacency list
-    public String printAdjList(char[] labelVertex)
+    public String printAdjList()
     {
+        System.out.println("\nAdjacency List: ");
         for(int i = 0; i < adjList.size(); i++)
         {
-            System.out.print("\nVertex: " + labelVertex[i] + ":");
+        
+            System.out.print("\nVertex: " + labels[i] + ":");
 
             for(int j = 0; j < adjList.get(i).size(); j++)
             {
-                System.out.print(" -> " + labelVertex[adjList.get(i).get(j)]);
+                System.out.print(" -> " + labels[adjList.get(i).get(j)]);
             }
         }
         return "\n";
