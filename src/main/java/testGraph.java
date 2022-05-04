@@ -23,9 +23,20 @@ public class testGraph{
         g.addEdge(6, 7);
         g.addEdge(7, 8);
         g.addEdge(8, 5);
+        
+        //Label the vertex 
+        g.addVertex("A");
+        g.addVertex("B");
+        g.addVertex("C");
+        g.addVertex("D");
+        g.addVertex("E");
+        g.addVertex("F");
+        g.addVertex("G");
+        g.addVertex("H");
+        g.addVertex("I");
     
-        System.out.print(g.printAdjMatrix());
-
+        g.printAdjMatrix();
+        g.printAdjList();
          
     }
     
