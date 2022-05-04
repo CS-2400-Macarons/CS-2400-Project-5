@@ -1,22 +1,21 @@
 import ADTPackage.QueuePackage.*;
 import ADTPackage.StackPackage.*;
+import java.util.ArrayList;
 
 public class Graph<T> implements GraphInterface<T>
 {
-    private boolean[][] edges;
-    private T[] labels;
     private boolean adjMatrix[][];
+    private ArrayList<ArrayList<Integer>> adjList;
+    private T[] labels;
     private int numVertices;
-    private ArrayList<ArrayList<Integer>> adjList; 
     
 
     public Graph(int n)
     {
-        edges = new boolean[n][n];
-        labels = (T[]) new Object[n];        
-        this.numVertices = n;
         adjMatrix = new boolean[n][n];
         adjList = new ArrayList<ArrayList<Integer>>(n);
+        labels = (T[]) new Object[n];        
+        this.numVertices = n;
     }
 
     public int[] neighbors(int vertex)
@@ -27,7 +26,7 @@ public class Graph<T> implements GraphInterface<T>
 
         for(i = 0; i < labels.length; i++)
         {
-            if(edges[vertex][i])
+            if(adjMatrix[vertex][i])
             {
                 count++;
             }
@@ -42,13 +41,15 @@ public class Graph<T> implements GraphInterface<T>
         count = 0;
         for (i = 0; i < labels.length; i++)
         {
-            if(edges[vertex][i])
+            if(adjMatrix[vertex][i])
             {
                 answer[count++] = i;
             }
         }
         return answer;
     }
+
+    // graph interface methods below
 
     public T getLabel(int vertex)
     {
@@ -62,7 +63,7 @@ public class Graph<T> implements GraphInterface<T>
 
     public int size()
     {
-        return labels.length;
+        return numVertices;
     }
 
     @Override
@@ -76,7 +77,11 @@ public class Graph<T> implements GraphInterface<T>
     }
 
     @Override
-   public void addEdge(int source, int target)
+    public boolean addEdge(T begin, T end) {
+        return false;
+    }
+
+    public void addEdge(int source, int target)
     {
         adjMatrix[source][target] = true;
         adjList.get(source).add(target);
@@ -87,19 +92,20 @@ public class Graph<T> implements GraphInterface<T>
     public boolean hasEdge(T begin, T end) {
         return false;
     }
-
-    @Override
+    
     public boolean isEmpty() {
-        return false;
+        return numVertices == 0;
     }
 
     @Override
     public int getNumberOfVertices() {
-        return 0;
+        return numVertices;
     }
 
     @Override
     public int getNumberOfEdges() {
+        int edges = 0;
+
         return 0;
     }
 
@@ -107,6 +113,8 @@ public class Graph<T> implements GraphInterface<T>
     public void clear() {
 
     }
+
+    // extra methods below
     
     //print the adjacency Matrix
     public String printAdjMatrix() {
@@ -131,8 +139,8 @@ public class Graph<T> implements GraphInterface<T>
        return "\n";
         
       }
-      
-      //Print the adjacency list
+
+    //Print the adjacency list
     public String printAdjList(char[] labelVertex)
     {
         for(int i = 0; i < adjList.size(); i++)
@@ -157,7 +165,7 @@ public class Graph<T> implements GraphInterface<T>
         int visitVertex = origin;
 
         // Mark originVertex as visited
-        if(!edges[origin][origin])
+        if(!adjMatrix[origin][origin])
         {
             return null;
         }
