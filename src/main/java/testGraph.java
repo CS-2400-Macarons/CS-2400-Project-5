@@ -25,15 +25,15 @@ public class testGraph{
         g.addEdge(8, 5);
         
         //Label the vertex 
-        g.addVertex("A");
-        g.addVertex("B");
-        g.addVertex("C");
-        g.addVertex("D");
-        g.addVertex("E");
-        g.addVertex("F");
-        g.addVertex("G");
-        g.addVertex("H");
-        g.addVertex("I");
+        g.setLabel(0,"A");
+        g.setLabel(1, "B");
+        g.setLabel(2, "C");
+        g.setLabel(3,"D");
+        g.setLabel(4, "E");
+        g.setLabel(5, "F");
+        g.setLabel(6, "G");
+        g.setLabel(7, "H");
+        g.setLabel(8, "I");
     
         g.printAdjMatrix();
         g.printAdjList();

@@ -14,17 +14,6 @@ public interface BasicGraphInterface<T>
      @return  True if the vertex is added, or false if not. */
     public boolean addVertex(T vertexLabel);
 
-    /** Adds a weighted edge between two given distinct vertices that
-     are currently in this graph. The desired edge must not already
-     be in the graph. In a directed graph, the edge points toward
-     the second vertex given.
-     @param begin  An object that labels the origin vertex of the edge.
-     @param end    An object, distinct from begin, that labels the end
-     vertex of the edge.
-     @param edgeWeight  The real value of the edge's weight.
-     @return  True if the edge is added, or false if not. */
-    public boolean addEdge(T begin, T end, double edgeWeight);
-
     /** Adds an unweighted edge between two given distinct vertices
      that are currently in this graph. The desired edge must not
      already be in the graph. In a directed graph, the edge points
@@ -33,7 +22,7 @@ public interface BasicGraphInterface<T>
      @param end    An object, distinct from begin, that labels the end
      vertex of the edge.
      @return  True if the edge is added, or false if not. */
-    public boolean addEdge(T begin, T end);
+    public void addEdge(int begin, int end);
 
     /** Sees whether an edge exists between two given vertices.
      @param begin  An object that labels the origin vertex of the edge.

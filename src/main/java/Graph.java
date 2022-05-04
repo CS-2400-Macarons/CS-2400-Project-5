@@ -76,16 +76,6 @@ public class Graph<T> implements GraphInterface<T>
         return true; //will fix this in a bit
     }
 
-    @Override
-    public boolean addEdge(T begin, T end, double edgeWeight) {
-        return false;
-    }
-
-    @Override
-    public boolean addEdge(T begin, T end) {
-        return false;
-    }
-
     public void addEdge(int source, int target)
     {
         adjMatrix[source][target] = true;
