@@ -15,7 +15,7 @@ public class Graph<T> implements GraphInterface<T>
     {
         adjMatrix = new boolean[n][n];
         adjList = new ArrayList<ArrayList<Integer>>(n);
-            for(int i = 0; i < num; i++)
+            for(int i = 0; i < n; i++)
                 adjList.add(new ArrayList<Integer>());
         labels = (T[]) new Object[n];        
         this.numVertices = n;
@@ -68,16 +68,12 @@ public class Graph<T> implements GraphInterface<T>
     {
         return numVertices;
     }
-
-    @Override
-    public boolean addVertex(T vertexLabel) {
-        return false;
-    }
     
-    public void addVertex(T vertex)
+    public boolean addVertex(T vertex)
     {
         labels[index] = vertex;
         index++;
+        return true; //will fix this in a bit
     }
 
     @Override
