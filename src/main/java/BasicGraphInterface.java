@@ -8,12 +8,6 @@
  */
 public interface BasicGraphInterface<T>
 {
-    /** Adds a given vertex to this graph.
-     @param vertexLabel  An object that labels the new vertex and is
-     distinct from the labels of current vertices.
-     @return  True if the vertex is added, or false if not. */
-    public boolean addVertex(T vertexLabel);
-
     /** Adds an unweighted edge between two given distinct vertices
      that are currently in this graph. The desired edge must not
      already be in the graph. In a directed graph, the edge points
@@ -28,7 +22,7 @@ public interface BasicGraphInterface<T>
      @param begin  An object that labels the origin vertex of the edge.
      @param end    An object that labels the end vertex of the edge.
      @return  True if an edge exists. */
-    public boolean hasEdge(T begin, T end);
+    public boolean hasEdge(int begin, int end);
 
     /** Sees whether this graph is empty.
      @return  True if the graph is empty. */

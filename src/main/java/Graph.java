@@ -1,5 +1,7 @@
 import ADTPackage.QueuePackage.*;
 import ADTPackage.StackPackage.*;
+import ADTPackage.VertexPackage.VertexInterface;
+
 import java.util.ArrayList;
 
 public class Graph<T> implements GraphInterface<T>
@@ -85,7 +87,7 @@ public class Graph<T> implements GraphInterface<T>
     }
 
     @Override
-    public boolean hasEdge(T begin, T end) {
+    public boolean hasEdge(int begin, int end) {
         return false;
     }
     
@@ -161,7 +163,8 @@ public class Graph<T> implements GraphInterface<T>
         return "\n";
     }
 
-    public QueueInterface<T> getBreadthFirstTraversal(int origin) {
+    public QueueInterface<T> getBreadthFirstTraversal(int origin)
+    {
         return null;
     }
 
@@ -205,7 +208,7 @@ public class Graph<T> implements GraphInterface<T>
 
             if(!neighborsVisited && vertexNeighbors != null)
             {
-                visitVertex = vertexNeighbors[index]; // visit first neighbor
+                visitVertex = vertexNeighbors[index];
                 traversalOrder.enqueue(getLabel(visitVertex));
                 vertexStack.push(visitVertex);
 
