@@ -1,10 +1,9 @@
+import ADTPackage.QueuePackage.QueueInterface;
+
 import java.util.ArrayList;
 import java.util.*;
 public class testGraph{
-
     
-
-   
     public static void main(String[] args)
 
     {
@@ -37,7 +36,17 @@ public class testGraph{
     
         g.printAdjMatrix();
         g.printAdjList();
-         
+
+        QueueInterface depth = g.getDepthFirstTraversal(0);
+        String dTraversal = "";
+
+        System.out.println("\n\nDepth-First Traversal: ");
+
+        for(int i = 0; i < 9; i++)
+        {
+            System.out.print(depth.dequeue());
+        }
+
     }
     
 }

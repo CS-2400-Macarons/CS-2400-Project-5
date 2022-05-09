@@ -72,6 +72,26 @@ public final class LinkedQueue<T> implements QueueInterface<T>
         lastNode = null;
     } // end clear
 
+    public String toString()
+    {
+        String result = "";
+
+        if(!isEmpty())
+        {
+            Node currentNode = firstNode;
+
+            while(currentNode != lastNode)
+            {
+                result.concat(currentNode.getData().toString());
+                currentNode = currentNode.getNextNode();
+            }
+
+            result.concat(currentNode.getData().toString());
+        }
+
+        return result;
+    }
+
     private class Node
     {
         private T    data; // Entry in queue

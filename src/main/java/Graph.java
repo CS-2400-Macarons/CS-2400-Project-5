@@ -49,6 +49,7 @@ public class Graph<T> implements GraphInterface<T>
                 answer[count++] = i;
             }
         }
+
         return answer;
     }
 
@@ -168,25 +169,48 @@ public class Graph<T> implements GraphInterface<T>
         QueueInterface<T> traversalOrder = new LinkedQueue<>();
         StackInterface<Integer> vertexStack = new LinkedStack<>();
         int visitVertex = origin;
+        int[] visitedNeighbors = new int[numVertices + 1];
+        int visitIndex = 0;
 
-        // Mark originVertex as visited
-        if(!adjMatrix[origin][origin])
-        {
-            return null;
-        }
         traversalOrder.enqueue(labels[origin]);
-
         vertexStack.push(origin);
+        visitedNeighbors[visitIndex] = origin;
+        visitIndex++;
 
         while(!vertexStack.isEmpty())
         {
             int topVertex = vertexStack.peek();
             int[] vertexNeighbors = neighbors(topVertex);
+
+            int index = 0;
+            boolean neighborsVisited = false;
+
             if(vertexNeighbors != null)
             {
-                visitVertex = vertexNeighbors[0]; // visit first neighbor
+                for(int i = 0; i < visitIndex; i++)
+                {
+                    if(vertexNeighbors[index] == visitedNeighbors[i])
+                    {
+                        index++;
+                    }
+
+                    if(index == vertexNeighbors.length)
+                    {
+                        neighborsVisited = true;
+                        i = visitIndex;
+                    }
+                }
+
+            }
+
+            if(!neighborsVisited && vertexNeighbors != null)
+            {
+                visitVertex = vertexNeighbors[index]; // visit first neighbor
                 traversalOrder.enqueue(getLabel(visitVertex));
                 vertexStack.push(visitVertex);
+
+                visitedNeighbors[visitIndex] = visitVertex;
+                visitIndex++;
             }
             else
             {
