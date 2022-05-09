@@ -165,13 +165,17 @@ public class Graph<T> implements GraphInterface<T>
 
    public QueueInterface<T> getBreadthFirstTraversal(int origin)
     {
-        QueueInterface<T> traversalOrder + new LinkedQueue<>();
+        QueueInterface<T> traversalOrder = new LinkedQueue<>();
         QueueInterface<Integer> vertexQueue = new LinkedQueue<>();
 
         int visitVertex = origin;
         int[] visitedNeighbors = new int[numVertices + 1];
-        int visitVertex = 0;
-        visitVertex++;
+        int visitIndex = 0;
+
+        traversalOrder.enqueue(labels[origin]);
+        vertexQueue.enqueue(origin);
+        visitedNeighbors[visitIndex] = origin;
+        visitIndex++;
 
         while(!vertexQueue.isEmpty())
         {
@@ -183,7 +187,7 @@ public class Graph<T> implements GraphInterface<T>
 
             if(vertexNeighbors != null)
             {
-                for(vertexNeighbors[index] == visitedNeighbors[i])
+                for(int i = 0; i < visitIndex; i++)
                 {
                     if(vertexNeighbors[index] == visitedNeighbors[i])
                     {
@@ -201,7 +205,7 @@ public class Graph<T> implements GraphInterface<T>
             {
                 for(int i = index; i < vertexNeighbors.length; i++)
                 {
-                    visitVertex = vertexNeighbors;
+                    visitVertex = vertexNeighbors[i];
                     boolean isAlreadyVisited = false;
 
                     for(int k = 0; k < visitedNeighbors.length; k++)
