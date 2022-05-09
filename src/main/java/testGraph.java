@@ -37,14 +37,24 @@ public class testGraph{
         g.printAdjMatrix();
         g.printAdjList();
 
+        // Testing depth-first traversal
         QueueInterface depth = g.getDepthFirstTraversal(0);
-        String dTraversal = "";
 
         System.out.println("\n\nDepth-First Traversal: ");
 
-        for(int i = 0; i < 9; i++)
+        for(int i = 0; i < g.getNumberOfVertices(); i++)
         {
             System.out.print(depth.dequeue());
+        }
+
+        // Testing breadth-first traversal
+        QueueInterface breadth = g.getBreadthFirstTraversal(0);
+
+        System.out.println("\n\nBreadth-First Traversal: ");
+
+        for(int i = 0; i < g.getNumberOfVertices(); i++)
+        {
+            System.out.print(breadth.dequeue());
         }
 
     }
