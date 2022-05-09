@@ -163,9 +163,66 @@ public class Graph<T> implements GraphInterface<T>
         return "\n";
     }
 
-    public QueueInterface<T> getBreadthFirstTraversal(int origin)
+   public QueueInterface<T> getBreadthFirstTraversal(int origin)
     {
-        return null;
+        QueueInterface<T> traversalOrder + new LinkedQueue<>();
+        QueueInterface<Integer> vertexQueue = new LinkedQueue<>();
+
+        int visitVertex = origin;
+        int[] visitedNeighbors = new int[numVertices + 1];
+        int visitVertex = 0;
+        visitVertex++;
+
+        while(!vertexQueue.isEmpty())
+        {
+            int frontVertex = vertexQueue.dequeue();
+            int[] vertexNeighbors = neighbors(frontVertex);
+
+            int index = 0;
+            boolean neighborsVisited = false;
+
+            if(vertexNeighbors != null)
+            {
+                for(vertexNeighbors[index] == visitedNeighbors[i])
+                {
+                    if(vertexNeighbors[index] == visitedNeighbors[i])
+                    {
+                        index++;
+                    }
+                    if(index == vertexNeighbors.length)
+                    {
+                        neighborsVisited = true;
+                        i = visitIndex;
+                    }
+                }
+            }
+
+            if(!neighborsVisited && vertexNeighbors != null)
+            {
+                for(int i = index; i < vertexNeighbors.length; i++)
+                {
+                    visitVertex = vertexNeighbors;
+                    boolean isAlreadyVisited = false;
+
+                    for(int k = 0; k < visitedNeighbors.length; k++)
+                    {
+                        if(visitVertex == visitedNeighbors[k])
+                        {
+                            isAlreadyVisited = true;
+                            k = visitedNeighbors.length;
+                        }
+                    }
+                    if(!isAlreadyVisited)
+                    {
+                        traversalOrder.enqueue(getLabel(visitVertex));
+                        vertexQueue.enqueue(visitVertex);
+                        visitedNeighbors[visitVertex] = visitVertex;
+                        visitIndex++;
+                    }
+                }
+            }
+        }
+        return traversalOrder;
     }
 
     public QueueInterface<T> getDepthFirstTraversal(int origin) {
