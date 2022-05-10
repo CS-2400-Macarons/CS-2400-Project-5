@@ -1,9 +1,12 @@
+package GraphPackage;
+
 import ADTPackage.QueuePackage.QueueInterface;
 
-import java.util.ArrayList;
-import java.util.*;
+/**
+ * Tests adjacency matric and list representation and breadth-first and depth-first implementation
+ */
 public class testGraph{
-    
+
     public static void main(String[] args)
 
     {

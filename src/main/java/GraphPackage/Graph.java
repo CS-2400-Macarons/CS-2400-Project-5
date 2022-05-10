@@ -1,18 +1,24 @@
+package GraphPackage;
+
 import ADTPackage.QueuePackage.*;
 import ADTPackage.StackPackage.*;
-import ADTPackage.VertexPackage.VertexInterface;
 
 import java.util.ArrayList;
 
+/**
+ The Graph Class with Adjacency Matrix and Adjacency representations,
+ including breadth-first and depth-first traversal methods.
+ */
 public class Graph<T> implements GraphInterface<T>
 {
     private boolean adjMatrix[][];
     private ArrayList<ArrayList<Integer>> adjList;
     private T[] labels;
     private int numVertices;
-    private int index = 0;
-    
 
+    /** Creates an adjacency matrix and list for the graph
+     * @param n The number of vertices in the graph.
+     */
     public Graph(int n)
     {
         adjMatrix = new boolean[n][n];
@@ -23,6 +29,10 @@ public class Graph<T> implements GraphInterface<T>
         this.numVertices = n;
     }
 
+    /** Returns the neighboring vertices in an array
+     * @param vertex Selected vertex
+     * @return An integer array of vertices that neighbors the selected vertex
+     */
     public int[] neighbors(int vertex)
     {
         int i;
@@ -55,66 +65,70 @@ public class Graph<T> implements GraphInterface<T>
         return answer;
     }
 
-    // graph interface methods below
-
+    /** Returns label of vertex
+     * @return Label of vertex
+     */
     public T getLabel(int vertex)
     {
         return labels[vertex];
     }
 
+    /** Sets the label of the vertex
+     * @param vertex The selected vertex of the graph
+     * @param newLabel The label assigned to the vertex
+     */
     public void setLabel(int vertex, T newLabel)
     {
         labels[vertex] = newLabel;
     }
 
+    /** Returns number of vertices
+     * @return The number of vertices of the graph
+     */
     public int size()
     {
         return numVertices;
     }
-    
-    public boolean addVertex(T vertex)
-    {
-        labels[index] = vertex;
-        index++;
-        return true; //will fix this in a bit
-    }
 
+    /** Adds an unweighted edge between two given distinct vertices
+     that are currently in this graph. The desired edge must not
+     already be in the graph. In a directed graph, the edge points
+     toward the second vertex given.
+     @param source An object that labels the origin vertex of the edge.
+     @param target    An object, distinct from begin, that labels the end
+     vertex of the edge. */
     public void addEdge(int source, int target)
     {
         adjMatrix[source][target] = true;
         adjList.get(source).add(target);
-       
     }
 
+    /** Sees whether an edge exists between two given vertices.
+     @param begin  An object that labels the origin vertex of the edge.
+     @param end    An object that labels the end vertex of the edge.
+     @return  True if an edge exists. */
     @Override
     public boolean hasEdge(int begin, int end) {
-        return false;
+        return adjMatrix[begin][end];
     }
-    
+
+    /** Sees whether this graph is empty.
+     @return  True if the graph is empty. */
+    @Override
     public boolean isEmpty() {
         return numVertices == 0;
     }
 
-    @Override
+    /** Gets the number of vertices in this graph.
+     @return  The number of vertices in the graph. */
     public int getNumberOfVertices() {
         return numVertices;
     }
 
-    @Override
-    public int getNumberOfEdges() {
-        int edges = 0;
 
-        return 0;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    // extra methods below
-    
-    //print the adjacency Matrix
+    /** Returns the adjacency matrix in a to-be printed String
+     * @return Adjacency matrix
+     */
     public String printAdjMatrix() {
         
        System.out.println("Adjacency Matrix: ");
@@ -146,7 +160,9 @@ public class Graph<T> implements GraphInterface<T>
         
       }
 
-    //Print the adjacency list
+    /** Returns the adjacency list in a to-be printed String
+     * @return Adjacency list
+     */
     public String printAdjList()
     {
         System.out.println("\nAdjacency List: ");
@@ -163,6 +179,10 @@ public class Graph<T> implements GraphInterface<T>
         return "\n";
     }
 
+    /** Performs a breadth-first traversal of this graph.
+     @param origin  An integer that labels the origin vertex of the traversal.
+     @return  A queue of labels of the vertices in the traversal, with
+     the label of the origin vertex at the queue's front. */
    public QueueInterface<T> getBreadthFirstTraversal(int origin)
     {
         QueueInterface<T> traversalOrder = new LinkedQueue<>();
@@ -229,6 +249,10 @@ public class Graph<T> implements GraphInterface<T>
         return traversalOrder;
     }
 
+    /** Performs a depth-first traversal of this graph.
+     @param origin  An integer that labels the origin vertex of the traversal.
+     @return  A queue of labels of the vertices in the traversal, with
+     the label of the origin vertex at the queue's front. */
     public QueueInterface<T> getDepthFirstTraversal(int origin) {
         QueueInterface<T> traversalOrder = new LinkedQueue<>();
         StackInterface<Integer> vertexStack = new LinkedStack<>();

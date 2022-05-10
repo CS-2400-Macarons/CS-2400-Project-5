@@ -1,3 +1,5 @@
+package GraphPackage;
+
 import ADTPackage.QueuePackage.QueueInterface;
 
 /**
@@ -20,4 +22,4 @@ public interface GraphAlgorithmsInterface<T>
      the label of the origin vertex at the queue's front. */
     public QueueInterface<T> getDepthFirstTraversal(int origin);
 
-} // end GraphAlgorithmsInterface
+} // end GraphPackage.GraphAlgorithmsInterface

@@ -1,3 +1,5 @@
+package GraphPackage;
+
 /**
  An interface of methods providing basic operations for directed
  and undirected graphs that are either weighted or unweighted.
@@ -14,8 +16,7 @@ public interface BasicGraphInterface<T>
      toward the second vertex given.
      @param begin  An object that labels the origin vertex of the edge.
      @param end    An object, distinct from begin, that labels the end
-     vertex of the edge.
-     @return  True if the edge is added, or false if not. */
+     vertex of the edge. */
     public void addEdge(int begin, int end);
 
     /** Sees whether an edge exists between two given vertices.
@@ -30,12 +31,21 @@ public interface BasicGraphInterface<T>
 
     /** Gets the number of vertices in this graph.
      @return  The number of vertices in the graph. */
+
+    /** Returns label of the selected vertex
+     * @param vertex Selected vertex
+     * @return Label of vertex
+     */
+    public T getLabel(int vertex);
+
+    /** Sets the label of the vertex
+     * @param vertex The selected vertex of the graph
+     * @param label The label assigned to the vertex
+     */
+    public void setLabel(int vertex, T label);
+
+    /** Gets the number of vertices in this graph.
+     @return  The number of vertices in the graph. */
     public int getNumberOfVertices();
 
-    /** Gets the number of edges in this graph.
-     @return  The number of edges in the graph. */
-    public int getNumberOfEdges();
-
-    /** Removes all vertices and edges from this graph resulting in an empty graph. */
-    public void clear();
-} // end BasicGraphInterface
+} // end GraphPackage.BasicGraphInterface
